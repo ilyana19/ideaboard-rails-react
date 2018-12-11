@@ -34,7 +34,7 @@ class IdeasContainer extends Component {
   updateIdea = (idea) => {
     const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
     const ideas = update(this.state.ideas, {[ideaIndex]: { $set: idea }})
-    this.setState({ideas: ideas, notification: 'All changes saved', transitionIn: true})
+    this.setState({ideas: ideas, notification: 'All changes saved'})
   }
 
   deleteIdea = (id) => {
@@ -61,9 +61,8 @@ class IdeasContainer extends Component {
     return (
       <div className="main">
         <div>
-          <button className="newIdeaButton" onClick={this.addNewIdea} >
-            New Idea
-          </button>
+          <button className="newIdeaButton" onClick={this.addNewIdea} >New Idea</button>
+          <span className="notification">{this.state.notification}</span>
         </div>
         {this.state.ideas.map((idea) => {
           if(this.state.editingIdeaId === idea.id) {
