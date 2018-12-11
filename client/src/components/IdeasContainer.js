@@ -46,7 +46,7 @@ class IdeasContainer extends Component {
   render() {
     let ideas = this.state.ideas.map((idea, index) => {
       if (this.state.editingIdeaId === idea.id) {
-        return (<IdeaForm props={idea} key={index} />)
+        return (<IdeaForm idea={idea} key={index} />)
       } else {
         return (<Idea props={idea} key={index} />)
       }
