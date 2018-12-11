@@ -8,15 +8,29 @@ class IdeasContainer extends Component {
     this.state = {
       ideas: []
     }
+
+    this.addNewIdea = this.addNewIdea.bind(this)
   }
 
   componentDidMount() {
     axios.get('http://localhost:3001/api/v1/ideas.json')
       .then(response => {
-        console.log(response)
         this.setState({ideas: response.data})
       })
       .catch(error => console.log(error))
+  }
+
+  addNewIdea = () => {
+    axios.post('http://localhost:3001/api/v1/ideas', {
+      idea: {
+        title: '',
+        body: ''
+      }
+    })
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => console.log(error))
   }
 
   render() {
@@ -26,6 +40,13 @@ class IdeasContainer extends Component {
 
     return (
       <div>
+        <div>
+          <button className="newIdeaButton"
+            onClick={this.addNewIdea}>
+            New Idea
+          </button>
+        </div>
+
         {ideas}
       </div>
     );
