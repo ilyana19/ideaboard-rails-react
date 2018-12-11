@@ -19,9 +19,18 @@ class IdeasContainer extends Component {
   }
 
   render() {
+    let ideas = this.state.ideas.map((idea, index) => {
+      return (
+        <div className="tile" key={index}>
+          <h4>{idea.title}</h4>
+          <p>{idea.body}</p>
+        </div>
+      )
+    })
+
     return (
       <div>
-        Ideas
+        {ideas}
       </div>
     );
   }
